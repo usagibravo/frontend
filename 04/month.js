@@ -1,28 +1,28 @@
-let month = promot();
+let month = prompt();
 if (month === 1) {
   alert('January');
 } else if (month === 2 ) {
   alert('Feburary');
 } else if (month === 3) {
-  alert('Feburary');
+  alert('March');
 } else if (month === 4) {
-  alert('Feburary');
+  alert('April');
 } else if (month === 5) {
-  alert('Feburary');
+  alert('May');
 } else if (month === 6) {
-  alert('Feburary');
+  alert('June');
 } else if (month === 7) {
-  alert('Feburary');
+  alert('July');
 } else if (month === 8) {
-  alert('Feburary');
+  alert('August');
 } else if (month === 9) {
-  alert('Feburary');
+  alert('September');
 } else if (month === 10) {
-  alert('Feburary');
+  alert('October');
 } else if (month === 11) {
-  alert('Feburary');
+  alert('November');
 } else if (month === 12) {
-  alert('Feburary');
+  alert('December');
 } else {
-  alert('判定できません。')
+  alert('不明です。')
 };

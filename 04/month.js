@@ -1,4 +1,4 @@
-let month = promot()
+let month = promot();
 if (month === 1) {
   alert('January');
 } else if (month === 2 ) {
@@ -25,4 +25,4 @@ if (month === 1) {
   alert('Feburary');
 } else {
   alert('判定できません。')
-}
+};

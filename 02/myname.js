@@ -1,0 +1,1 @@
+console.log('大野雅弘')

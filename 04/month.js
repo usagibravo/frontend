@@ -24,5 +24,5 @@ if (month == 1) {
 } else if (month == 12) {
   alert('December');
 } else {
-  alert('不明です。')
-};
+  alert('不明です。');
+}

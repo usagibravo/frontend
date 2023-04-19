@@ -1,28 +1,8 @@
 let itemList = [];      // 商品一覧
 
 //--- データの定義 ---
-// 大分類
-let cate1 = [
-  '---',                  // 未選択
-  '家具',
-  'ベッド・マットレス',
-  '収納家具・収納グッズ',
-  '子ども家具'
-];
-
-// 小分類
-let cate2 = [
-  // 未選択
-  ['---'],
-  // 家具のカテゴリ
-  ['ベッド','ソファ','棚・ラック','テーブル・椅子'],
-  // ベッド・マットレスのカテゴリ
-  ['ベッド','寝具','マットレス'],
-  // 収納家具・収納グッズ'のカテゴリ
-  ['家具・ラック','収納システム'],
-  // 子ども家具
-  ['子ども部屋家具','ベビー家具・ベビーグッズ']
-];
+// 大分類/小分類
+let category = [];
 
 //--- 共通で使用する要素を取得 ---
 // 大分類のselectをid属性により取得
@@ -41,11 +21,11 @@ function setMainMenu() {
     cate1Element.innerHTML = "";
 
     // 大分類の配列に保存されている数だけoptionとして追加する
-    for (let i = 0; i < cate1.length; i++) {
+    for (let i = 0; i < category.length; i++) {
         // option要素を新規に作成
         let option = document.createElement('option');
-        option.value = cate1[i];    // optionの値に配列の値を代入
-        option.text = cate1[i];     // optionの表示文字列に配列の値を代入
+        option.value = category[i];    // optionの値に配列の値を代入
+        option.text = category[i].category;     // optionの表示文字列に配列の値を代入
         cate1Element.appendChild(option); // select要素の子要素としてoption要素を追加        
     }
 }
@@ -56,11 +36,11 @@ function setSubMenu(idx) {
     cate2Element.innerHTML = "";
 
     // 大分類の配列に保存されている数だけoptionとして追加する
-    for (let i = 0; i < cate2[idx].length; i++) {
+    for (let i = 0; i < category[idx].tags.length; i++) {
         // option要素を新規に作成
         let option = document.createElement('option');
-        option.value = cate2[idx][i];    // optionの値に配列の値を代入
-        option.text = cate2[idx][i];     // optionの表示文字列に配列の値を代入
+        option.value = category[idx].tags[i];    // optionの値に配列の値を代入
+        option.text = category[idx].tags[i];     // optionの表示文字列に配列の値を代入
         cate2Element.appendChild(option); // select要素の子要素としてoption要素を追加        
     }
 }
@@ -113,7 +93,7 @@ cate1Element.addEventListener('change', function(){
     // 大分類の選択に合わせて、小分類の生成
     setSubMenu(idx);
     //　小分類が選択されたときに、最初に表示される値
-    viewItemList(cate2[idx][0]);
+    viewItemList(category[idx].tags[0]);
 });
 
 // 小分類の選択された時のイベントリスナー
@@ -123,10 +103,30 @@ cate2Element.addEventListener('change', function(){
     viewItemList(val);
 });
 
+
+// 大分類・小分類をファイルから取得
+$(function () {
+    $.ajax({
+        url: 'json/category.json',
+
+        dataType: 'json'
+    })
+    .done(function (data) {
+        console.log(data);
+        category = data;
+        // 大分類の生成
+        setMainMenu(); 
+    })
+    .fail(function () {
+        alert("ファイルが読み込めませんでした");
+    });
+});
+
 // 商品一覧をファイルから取得
 $(function () {
     $.ajax({
         url: 'json/item.json',
+
         dataType: 'json'
     })
     .done(function (data) {

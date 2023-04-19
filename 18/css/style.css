@@ -1,0 +1,27 @@
+body {
+    font-size: 100%;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #main {
+      width:860px;
+      margin-top: 10px;
+      display:flex;
+  }
+  
+  
+  .side {
+    width:200px;
+    height:300px;
+    text-align:center;
+    margin-top: 25px;
+  }
+  
+  .content {
+    width: 640px;
+    height:300px;
+    text-align:center;
+    margin-left:10px;
+  }
